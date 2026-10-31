@@ -1,8 +1,12 @@
 import { useRef, useState } from "react";
 import { capabilities } from "../../data/portfolio";
 import { Icon } from "../atoms/Icon";
+import { ScrollShine } from "../atoms/ScrollShine";
 import { Tag } from "../atoms/Tag";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 export function Approach() {
+  const introReveal = useScrollReveal<HTMLDivElement>();
+  const workspaceReveal = useScrollReveal<HTMLDivElement>(90);
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const capability = capabilities[active];
@@ -12,25 +16,25 @@ export function Approach() {
       id="approach"
       aria-labelledby="approach-heading"
     >
-      <div className="approach-intro">
+      <div className="approach-intro" ref={introReveal}>
         <p className="eyebrow">
-          <span>02</span> AI 개발 방식
+          <span>03</span> AI 개발 방식
         </p>
         <h2 id="approach-heading">
-          코드를 넘어,
+          AI 도구를
           <br />
-          만드는 방식까지<span> 새롭게.</span>
+          <ScrollShine>이렇게 활용합니다.</ScrollShine>
         </h2>
         <p>
-          도구의 이름보다 중요한 건, 어떻게 연결하고 사용하는가.
+          요구사항과 코드 구조를 먼저 정리해 에이전트에 전달합니다.
           <br />
-          AI에 대한 이해를 개발의 언어로 정리했습니다.
+          생성된 코드는 직접 읽고, 의도대로 동작하는지 확인합니다.
         </p>
         <span className="approach-caption">
-          <Icon name="spark" size={16} /> 이해하고 활용하는 개발 방법론
+          <Icon name="spark" size={16} /> OpenCode · MCP · Skills · GSD
         </span>
       </div>
-      <div className="approach-workspace">
+      <div className="approach-workspace" ref={workspaceReveal}>
         <div
           className="capability-tabs"
           role="tablist"
@@ -100,14 +104,6 @@ export function Approach() {
               </div>
             ))}
           </div>
-          <a
-            href={capability.reference}
-            className="reference-link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            관련 공식 문서 <Icon name="arrow" size={14} />
-          </a>
         </div>
       </div>
     </section>

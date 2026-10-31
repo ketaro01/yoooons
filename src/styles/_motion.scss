@@ -1,0 +1,146 @@
+@use "tokens" as *;
+
+.scroll-shine {
+  display: inline-block;
+  max-width: 100%;
+  color: inherit;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .scroll-shine {
+    background-image: linear-gradient(
+      110deg,
+      #a5acb9 0%,
+      #d3d8e2 36%,
+      #a5acb9 43%,
+      #eef6ff 48%,
+      #ffffff 50%,
+      #d3e4ff 52%,
+      #a5acb9 58%,
+      #c0c5d0 72%,
+      #a5acb9 100%
+    );
+    background-size: 280% 100%;
+    background-position: var(--shine-position, 100%) 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active), print {
+  .scroll-shine {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}
+
+// Transform and opacity keep the metallic artwork moving without layout shifts.
+.hero-art {
+  --float-distance: -10px;
+  --ring-drift: 4px;
+  --art-play-state: paused;
+  &[data-motion="active"] {
+    --art-play-state: running;
+  }
+  .hero-monogram {
+    animation: monogram-float 7.5s ease-in-out infinite;
+  }
+  .metal-ring--outer {
+    animation: ring-drift 12s ease-in-out infinite;
+  }
+  .metal-ring--inner {
+    animation: ring-drift 15s ease-in-out -5s infinite reverse;
+  }
+  .horizon-glow {
+    animation: ambient-glow 10s ease-in-out -3s infinite;
+  }
+  .hero-monogram,
+  .metal-ring,
+  .horizon-glow {
+    animation-play-state: var(--art-play-state);
+  }
+}
+
+@keyframes monogram-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, var(--float-distance), 0);
+  }
+}
+
+// Individual rotate/translate preserve the rings' existing transforms.
+@keyframes ring-drift {
+  0%,
+  100% {
+    rotate: -2deg;
+    translate: 0 0;
+  }
+  50% {
+    rotate: 2deg;
+    translate: 0 var(--ring-drift);
+  }
+}
+
+@keyframes ambient-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+// Only JS-observed, offscreen elements are hidden. No layout changes or blur.
+[data-reveal="pending"] {
+  opacity: 0;
+  translate: 0 20px;
+}
+
+[data-reveal="visible"] {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    translate 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+// Keyboard navigation must never land on an invisible interactive control.
+[data-reveal]:focus-within {
+  opacity: 1;
+  translate: none;
+  transition: none;
+}
+
+@include mobile {
+  .hero-art {
+    --float-distance: -6px;
+    --ring-drift: 2px;
+  }
+  [data-reveal] {
+    --reveal-delay: 0ms !important;
+  }
+  [data-reveal="pending"] {
+    translate: 0 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  .hero-art .hero-monogram,
+  .hero-art .metal-ring,
+  .hero-art .horizon-glow {
+    animation: none !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    translate: none !important;
+    transition: none !important;
+  }
+}

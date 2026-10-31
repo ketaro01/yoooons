@@ -2,16 +2,20 @@ import type { Project } from "../../types/portfolio";
 import { Icon } from "../atoms/Icon";
 import { Tag } from "../atoms/Tag";
 import { ProjectVisual } from "./ProjectVisual";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 export function ProjectCard({
   project,
   onSelect,
+  revealDelay = 0,
 }: {
   project: Project;
   onSelect: (project: Project) => void;
+  revealDelay?: number;
 }) {
+  const reveal = useScrollReveal<HTMLElement>(revealDelay);
   return (
-    <article className="project-card">
+    <article className="project-card" ref={reveal}>
       <button
         className="project-card__button"
         onClick={() => onSelect(project)}
@@ -41,6 +45,11 @@ export function ProjectCard({
             </span>
           </div>
           <p>{project.description}</p>
+          {project.period && <p className="project-period">{project.period}</p>}
+          <p className="project-role">
+            <span>담당 역할</span>
+            {project.role}
+          </p>
           <div className="tags">
             {project.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>

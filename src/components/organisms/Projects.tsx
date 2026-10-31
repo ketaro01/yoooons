@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { filterProjects, filters, profile } from "../../data/portfolio";
+import { filterProjects, filters } from "../../data/portfolio";
 import type { Project, ProjectFilter } from "../../types/portfolio";
 import { SectionHeading } from "../atoms/SectionHeading";
 import { Icon } from "../atoms/Icon";
@@ -27,10 +27,10 @@ export function Projects() {
   return (
     <section className="section projects" id="projects">
       <SectionHeading
-        number="01"
+        number="02"
         label="프로젝트"
-        title="만들어온 경험들."
-        description="AI 플랫폼부터 데이터 서비스까지. 제품의 접점에서 화면과 사용 경험을 만들어왔습니다."
+        title="참여한 프로젝트"
+        description="각 프로젝트에서 맡은 기능과 해결한 문제를 소개합니다."
       />
       <div className="project-filters" role="group" aria-label="프로젝트 분류">
         {filters.map((item) => (
@@ -54,11 +54,12 @@ export function Projects() {
         {filter} 프로젝트 {matches.length}개 중 {visible.length}개 표시
       </p>
       <div className="project-grid">
-        {visible.map((project) => (
+        {visible.map((project, index) => (
           <ProjectCard
             key={project.id}
             project={project}
             onSelect={setSelected}
+            revealDelay={(index % 2) * 90}
           />
         ))}
       </div>
@@ -74,10 +75,6 @@ export function Projects() {
           <Icon name={expanded ? "close" : "plus"} size={17} />
         </button>
       )}
-      <p className="visual-note">
-        프로젝트 이미지는 역할을 표현한 컨셉 그래픽이며, 실제 서비스 화면이
-        아닙니다.
-      </p>
       <dialog
         ref={dialog}
         className="project-dialog"
@@ -113,14 +110,25 @@ export function Projects() {
               {selected.name}
               <span>{selected.subtitle}</span>
             </h2>
+            <p className="dialog-role">
+              <span>담당 역할</span>
+              {selected.role}
+            </p>
+            {selected.period && (
+              <p className="project-period">
+                프로젝트 기간 · {selected.period}
+              </p>
+            )}
+            <h3>기술 스택</h3>
             <div className="tags">
               {selected.tags.map((tag) => (
                 <Tag key={tag}>{tag}</Tag>
               ))}
               {selected.status && <Tag accent>{selected.status}</Tag>}
             </div>
-            <p className="dialog-description">{selected.description}</p>
-            <h3>담당한 일</h3>
+            <h3>프로젝트 개요</h3>
+            <p className="dialog-description">{selected.overview}</p>
+            <h3>구현 및 기여</h3>
             <ul>
               {selected.contribution.map((item) => (
                 <li key={item}>
@@ -129,19 +137,35 @@ export function Projects() {
                 </li>
               ))}
             </ul>
-            {selected.source === "기존 포트폴리오" && (
-              <a
-                className="text-link"
-                href={profile.source}
-                target="_blank"
-                rel="noreferrer"
-              >
-                기존 경력 기록 <Icon name="arrow" size={15} />
-              </a>
+            {selected.outcomes && (
+              <>
+                <h3>주요 성과</h3>
+                <ul>
+                  {selected.outcomes.map((item) => (
+                    <li key={item}>
+                      <Icon name="check" size={17} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </>
             )}
-            <p className="dialog-note">
-              공개 가능한 참여 범위를 중심으로 소개합니다.
-            </p>
+            {selected.links && (
+              <div className="project-resources" aria-label="관련 결과물">
+                {selected.links.map((link) => (
+                  <a
+                    className="text-link"
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link.label}
+                    <Icon name="arrow" size={15} />
+                  </a>
+                ))}
+              </div>
+            )}
           </>
         )}
       </dialog>

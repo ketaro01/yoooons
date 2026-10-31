@@ -1,6 +1,11 @@
 node_modules/
 dist/
 .sites-runtime/
+.tools/
+.openai/
+qa/
+/CONTENT.md
+*.tar.gz
 *.log
 .env*
 !.env.example

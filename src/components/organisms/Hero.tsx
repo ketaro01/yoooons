@@ -1,65 +1,49 @@
 import { Icon } from "../atoms/Icon";
+import { ScrollShine } from "../atoms/ScrollShine";
+import { profile } from "../../data/portfolio";
+import { useAmbientMotion } from "../../hooks/useAmbientMotion";
+
 export function Hero() {
+  const artMotion = useAmbientMotion<HTMLDivElement>();
   return (
     <section className="hero" id="home" aria-labelledby="hero-heading">
-      <div className="hero-main">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="status-dot" /> 프론트엔드 개발자 · YOOOONS
-          </p>
-          <h1 id="hero-heading">
-            생각을 구조로,
-            <br />
-            구조를{" "}
-            <span>
-              경험으로<span className="hero-period">.</span>
-            </span>
-          </h1>
-          <p className="hero-description">
-            서비스를 만드는 경험에 AI의 가능성을 더합니다.
-            <br />
-            사용자에게 닿는 화면부터, 더 나은 개발 방식까지.
-          </p>
-          <div className="hero-actions">
-            <a className="button button--dark" href="#projects">
-              프로젝트 살펴보기 <Icon name="arrow" size={18} />
-            </a>
-            <a className="text-link" href="#approach">
-              AI와 함께 일하는 방식 <Icon name="down" size={16} />
-            </a>
-          </div>
+      <div className="hero-copy">
+        <p className="eyebrow">웹 서비스 · 데이터 플랫폼 · AI 플랫폼</p>
+        <h1 id="hero-heading">
+          서비스를 만들고,
+          <br />
+          <ScrollShine>더 나은 구조를 고민합니다.</ScrollShine>
+        </h1>
+        <p className="hero-description">
+          화면과 API부터 공통 프레임워크와 라이브러리까지.
+          <br />
+          서비스를 만들고 개선하는 개발자 {profile.fullName}입니다.
+        </p>
+        <div className="hero-actions">
+          <a className="button button--dark" href="#projects">
+            프로젝트 살펴보기 <Icon name="arrow" size={17} />
+          </a>
+          <a className="text-link" href="#about">
+            저를 소개합니다 <Icon name="arrow" size={16} />
+          </a>
         </div>
-        <div className="hero-art" aria-hidden="true">
-          <div className="art-grid" />
-          <div className="orbit orbit--one" />
-          <div className="orbit orbit--two" />
-          <span className="art-coordinate art-coordinate--top">
-            01 / HUMAN × AI
-          </span>
-          <div className="floating-label floating-label--top">
-            <span className="status-dot" /> 사람의 생각으로 시작해
-          </div>
-          <div className="sculpture">
-            <div className="sculpture-layer sculpture-layer--back" />
-            <div className="sculpture-layer sculpture-layer--middle" />
-            <div className="sculpture-layer sculpture-layer--front">
-              <Icon name="spark" size={92} />
-            </div>
-          </div>
-          <div className="floating-label floating-label--bottom">
-            <Icon name="code" size={16} /> 코드로 경험을 만듭니다
-          </div>
-          <span className="art-coordinate art-coordinate--bottom">
-            DESIGN → BUILD → REFINE
-          </span>
-          <span className="art-cross">+</span>
-        </div>
+      </div>
+      <div className="hero-art" ref={artMotion} aria-hidden="true">
+        <div className="horizon-glow" />
+        <div className="metal-ring metal-ring--outer" />
+        <div className="metal-ring metal-ring--inner" />
+        <div className="hero-monogram">y.</div>
+        <span className="art-label art-label--left">프론트엔드 개발</span>
+        <span className="art-label art-label--right">
+          공통 프레임워크 · 라이브러리
+        </span>
+        <span className="art-caption">{profile.englishName} · Portfolio</span>
       </div>
       <div className="hero-bottom">
         <p>
-          제품을 이해하고.
+          현재 KT에서
           <br />
-          <strong>경험을 구현합니다.</strong>
+          <strong>플랫폼 UI를 개발합니다.</strong>
         </p>
         <div className="hero-stack">
           <span>React</span>
@@ -72,8 +56,7 @@ export function Hero() {
           href="#projects"
           aria-label="프로젝트 영역으로 이동"
         >
-          <span>아래로 탐색</span>
-          <Icon name="down" size={17} />
+          프로젝트 탐색 <Icon name="down" size={16} />
         </a>
       </div>
     </section>

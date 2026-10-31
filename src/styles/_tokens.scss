@@ -1,6 +1,5 @@
 $breakpoint-tablet: 1000px;
 $breakpoint-mobile: 680px;
-
 :root {
   font-family:
     "Pretendard Variable",
@@ -8,33 +7,21 @@ $breakpoint-mobile: 680px;
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-  color: #202a23;
-  background: #f5f6f2;
+  color-scheme: dark;
+  color: #f5f5f7;
+  background: #08090b;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  --bg: #f5f6f2;
-  --surface: #fff;
-  --ink: #202a23;
-  --muted: #667168;
-  --line: #dce1d8;
-  --soft: #eaf0e5;
-  --accent: #39764a;
-  --forest: #1d3d30;
-  --lime: #c4f470;
+  --bg: #08090b;
+  --header-height: 76px;
+  --surface: #141519;
+  --ink: #f5f5f7;
+  --muted: #98999f;
+  --line: #2b2c32;
+  --soft: #1b1c21;
+  --accent: #9bbdff;
 }
-
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #151c18;
-  --surface: #202a23;
-  --ink: #edf2e9;
-  --muted: #a5b0a7;
-  --line: #3b483e;
-  --soft: #293a2c;
-  --accent: #b4de8a;
-}
-
 @mixin mobile {
   @media (max-width: $breakpoint-mobile) {
     @content;

@@ -7,9 +7,14 @@ export interface Project {
   category: ProjectCategory;
   subtitle: string;
   description: string;
+  overview: string;
+  role: string;
   contribution: string[];
+  period?: string;
+  outcomes?: string[];
+  links?: { label: string; url: string }[];
   tags: string[];
-  visual: "token" | "studio" | "data" | "form";
+  visual: "token" | "studio" | "hub" | "data" | "form";
   status?: string;
   source: "사용자 제공" | "기존 포트폴리오";
 }

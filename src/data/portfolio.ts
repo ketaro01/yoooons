@@ -5,9 +5,20 @@ import type {
   ProjectFilter,
 } from "../types/portfolio";
 import legacyCareers from "./careers.json";
+import { careerCopy } from "./careerCopy";
 
 export const profile = {
   name: "YOOOONS",
+  fullName: "윤대훈",
+  englishName: "Daehun Yoon",
+  role: "소프트웨어 개발자",
+  email: "ketaro01@naver.com",
+  introduction: [
+    "중학생 때 나모웹에디터와 제로보드로 작은 커뮤니티를 만들었습니다. 직접 만든 화면이 동작하는 게 재미있었고, 그 관심이 개발이라는 직업으로 이어졌습니다. C#과 .NET 기반 웹 서비스부터 React와 Vue를 사용하는 플랫폼까지, 화면과 API, 데이터 연동을 개발해왔습니다.",
+    "새 기능을 만드는 것만큼, 나중에 고치고 확장하기 쉬운 구조를 중요하게 생각합니다. KT NexR에서는 라우팅·권한·레이아웃을 갖춘 관리자 프레임워크를 개발하고, AngularJS 기반 NDAP을 React로 옮겼습니다. 여러 화면에서 쓰는 UI와 Mock API의 데이터 관리 기능은 라이브러리로 분리해 npm에 배포했습니다.",
+    "KT에서는 K intelligence studio, AX Works Internal Portal, Token Factory의 공통 프론트엔드 프레임워크를 개발했습니다. 플레이그라운드와 MCP Hub를 담당했고, 지금은 Token Factory의 대시보드와 모델 원가 관리 UI를 개발하고 있습니다.",
+    "최근에는 OpenCode, MCP, Skills, GSD를 활용하는 개발 방식에도 관심을 두고 있습니다. AI에 맡길 작업과 직접 확인할 부분을 구분하면서, 제 개발 과정에 맞는 활용법을 익혀가고 있습니다.",
+  ],
   github: "https://github.com/ketaro01",
   archive: "https://yoooons.com/",
   source:
@@ -24,12 +35,35 @@ export const projects: Project[] = [
     visual: "token",
     status: "개발 진행 중",
     description:
-      "Token Factory Platform Admin의 UI를 담당하여 개발하고 있습니다.",
+      "레이아웃과 권한 관리 등 관리자 프론트엔드의 공통 기반을 개발했습니다. 현재 대시보드와 모델 원가 관리 화면을 중심으로 플랫폼 운영 UI를 구현하고 있습니다.",
+    overview:
+      "Token Factory의 운영을 위한 관리자 서비스입니다. 대시보드와 모델 원가 관리 화면을 개발하고 있습니다.",
+    role: "공통 프레임워크 · 대시보드 · 모델 원가 관리 UI",
     contribution: [
-      "플랫폼 관리자 화면 UI 개발",
-      "현재 진행 중인 프론트엔드 프로젝트",
+      "관리자 서비스의 레이아웃과 권한 관리 등 공통 프론트엔드 프레임워크 개발",
+      "플랫폼 운영 대시보드 UI 개발",
+      "모델 원가 관리 화면 개발",
     ],
-    tags: ["Admin UI", "Frontend"],
+    tags: ["React", "Vite", "TypeScript"],
+    source: "사용자 제공",
+  },
+  {
+    id: "ax-works",
+    name: "AX Works",
+    company: "KT",
+    category: "AI 플랫폼",
+    subtitle: "Internal Portal",
+    visual: "hub",
+    description:
+      "MCP와 Skill을 관리·승인하는 KT 사내 포털의 프론트엔드를 개발했습니다. 레이아웃·권한 관리 기반을 구현하고, MCP Hub 기능 개발을 중점적으로 담당했습니다.",
+    overview:
+      "KT 임직원이 MCP와 Skill을 한곳에서 관리하고 승인하는 B2E 포털입니다.",
+    role: "공통 프레임워크 · MCP Hub 개발",
+    contribution: [
+      "사내 포털의 레이아웃과 권한 관리 등 공통 프론트엔드 프레임워크 개발",
+      "MCP 관리·승인 허브인 MCP Hub의 프론트엔드 기능 구현",
+    ],
+    tags: ["React", "Vite", "TypeScript"],
     source: "사용자 제공",
   },
   {
@@ -39,12 +73,16 @@ export const projects: Project[] = [
     category: "AI 플랫폼",
     subtitle: "Studio",
     visual: "studio",
-    description: "KT에서 K intelligence studio 개발에 참여했습니다.",
+    description:
+      "K intelligence studio의 공통 프론트엔드 프레임워크를 개발했습니다. 레이아웃과 권한 관리 기능을 구현하고, 플레이그라운드 기능 개발을 중점적으로 담당했습니다.",
+    overview:
+      "KT의 K intelligence studio 개발 프로젝트입니다. 공통 프레임워크와 플레이그라운드 기능을 맡았습니다.",
+    role: "공통 프레임워크 · 플레이그라운드 개발",
     contribution: [
-      "K intelligence studio 개발 참여",
-      "KT NexR 이후 KT에서 이어온 제품 개발 경험",
+      "Studio의 레이아웃과 권한 관리 등 공통 프론트엔드 프레임워크 개발",
+      "플레이그라운드 화면 및 프론트엔드 기능 구현",
     ],
-    tags: ["Studio", "Product Development"],
+    tags: ["React", "Vite", "TypeScript"],
     source: "사용자 제공",
   },
   {
@@ -54,9 +92,59 @@ export const projects: Project[] = [
     category: "데이터 플랫폼",
     subtitle: "New version",
     visual: "data",
-    description: "NDAP 신규 버전의 프론트엔드 개발을 담당했습니다.",
-    contribution: ["신규 버전 프론트엔드 개발 담당"],
-    tags: ["Frontend", "New Version"],
+    description:
+      "AngularJS 1.x 기반 NDAP을 React로 전환하며 관리자 프레임워크와 핵심 기능을 개발했습니다. 기존 기능의 80% 이상을 마이그레이션하고, 개발용 Mock API의 데이터 관리 기능을 npm 라이브러리로 분리했습니다.",
+    overview:
+      "기존 AngularJS 1.x 기반 NDAP을 React 기반으로 마이그레이션하고 신규 디자인을 적용한 차세대 버전 개발 프로젝트입니다.",
+    period: "2023.01 — 2024.06",
+    role: "관리자 프레임워크 · 핵심 기능 마이그레이션",
+    contribution: [
+      "라우팅·권한 관리·레이아웃을 포함한 신규 관리자 프레임워크 개발",
+      "Workflow, Workbench, Storage Browser 등 핵심 화면 개발 및 신규 디자인 적용",
+      "프론트엔드 개발용 Mock API와 테스트 데이터 관리 기능 개발",
+    ],
+    outcomes: [
+      "기존 기능의 80% 이상을 마이그레이션하며 AngularJS에서 React로 전환",
+      "Mock API의 데이터 관리 기능을 mock-table-data npm 라이브러리로 분리·배포",
+    ],
+    links: [
+      {
+        label: "mock-table-data · npm",
+        url: "https://www.npmjs.com/package/mock-table-data",
+      },
+    ],
+    tags: ["React", "CRA", "TypeScript", "Redux-Saga"],
+    source: "사용자 제공",
+  },
+  {
+    id: "neb",
+    name: "NEB",
+    company: "KT NexR",
+    category: "데이터 플랫폼",
+    subtitle: "NexR Bookshelf",
+    visual: "data",
+    description:
+      "분석환경 솔루션의 기본 구조와 레이아웃을 구성하고 Explorer, Analysis, Shared Storage 화면을 개발했습니다. 반복 사용하는 UI를 공통 컴포넌트 라이브러리로 개발·배포했습니다.",
+    overview:
+      "KT NexR의 분석환경 솔루션 NexR Bookshelf(NEB)의 프론트엔드 개발·유지보수 프로젝트입니다.",
+    period: "2020.07 — 2022.12",
+    role: "분석환경 UI · 공통 컴포넌트 개발",
+    contribution: [
+      "관리자 프레임워크를 활용한 서비스 기본 구조 및 레이아웃 구현",
+      "Explorer, Analysis, Shared Storage 화면 개발 및 유지보수",
+      "UI 재사용성을 높이기 위한 @ktnexr/neb-ui 공통 컴포넌트 라이브러리 개발",
+    ],
+    outcomes: [
+      "NEB 1.3 릴리스에 참여. 제품은 외부 고객사 수주로 이어짐",
+      "공통 UI를 @ktnexr/neb-ui npm 패키지로 배포",
+    ],
+    links: [
+      {
+        label: "@ktnexr/neb-ui · npm",
+        url: "https://www.npmjs.com/package/@ktnexr/neb-ui",
+      },
+    ],
+    tags: ["React", "CRA", "TypeScript", "Redux-Saga"],
     source: "사용자 제공",
   },
   {
@@ -66,21 +154,21 @@ export const projects: Project[] = [
     category: "데이터 플랫폼",
     subtitle: "Frontend",
     visual: "data",
-    description: "KT NexR에서 Constantine의 프론트엔드 개발을 담당했습니다.",
-    contribution: ["Constantine 프론트엔드 개발 담당"],
-    tags: ["Frontend", "Platform UI"],
-    source: "사용자 제공",
-  },
-  {
-    id: "neb",
-    name: "NEB",
-    company: "KT NexR",
-    category: "데이터 플랫폼",
-    subtitle: "NE Bookshelf",
-    visual: "data",
-    description: "NEB(NE Bookshelf)의 프론트엔드 개발을 담당했습니다.",
-    contribution: ["NE Bookshelf 프론트엔드 개발 담당"],
-    tags: ["Frontend", "Platform UI"],
+    description:
+      "Vue와 Vuex로 빅데이터 플랫폼의 Dashboard와 Workbench를 개발했습니다. Apache Zeppelin을 연동한 Notebook을 구현하고, Dashboard·Workbench의 API 호출 성능을 개선했습니다.",
+    overview:
+      "빅데이터 플랫폼 Constantine의 UI 개발 프로젝트로, KT NexR 합류 후 처음 담당한 프로젝트입니다.",
+    period: "2020.03 — 2020.06",
+    role: "Dashboard · Notebook · Workbench 개발",
+    contribution: [
+      "Vue·Vuex 기반 Dashboard와 Workbench 프론트엔드 개발",
+      "Apache Zeppelin을 연동한 Notebook 프론트엔드 개발",
+    ],
+    outcomes: [
+      "Zeppelin 기반 Notebook 기능 구현",
+      "Dashboard·Workbench의 API 호출 성능 개선",
+    ],
+    tags: ["Vue", "Vuex", "JavaScript"],
     source: "사용자 제공",
   },
   {
@@ -91,14 +179,23 @@ export const projects: Project[] = [
     subtitle: "전자계약 서비스",
     visual: "form",
     description:
-      "React 기반 전자계약 서비스의 프론트엔드를 개발하고 유지보수했습니다.",
+      "전자계약 에디터의 저장 구조를 Store 중심으로 개선하고 실행 취소·다시 실행과 다중 드래그 기능을 구현했습니다. Canvas 지연 로딩과 메모리 누수 문제를 해결하고 서명·도장 생성 모듈을 개발했습니다.",
+    overview:
+      "React와 Redux를 활용한 전자계약 서비스 eForm3의 개발·유지보수 프로젝트입니다.",
+    period: "2019.05 — 2020.01",
+    role: "에디터 구조 개선 · 프론트엔드 개발",
     contribution: [
-      "에디터 로직 개선 및 Canvas 이슈 대응",
-      "신규 기능 추가",
-      "서명·도장 생성을 위한 npm 모듈 개발",
+      "Store 기반 데이터 저장 구조 개선 및 Undo/Redo·Multiple Drag 구현",
+      "Konva Canvas 지연 로딩 처리와 메모리 누수 이슈 수정",
+      "API 서비스 화면 개발",
+      "서명·도장 생성 기능을 npm 모듈로 개발",
     ],
-    tags: ["React", "Redux", "Canvas"],
-    source: "기존 포트폴리오",
+    outcomes: [
+      "에디터의 편집 기능을 확장할 수 있도록 저장 구조 개선",
+      "Canvas 관련 메모리 누수 문제 해결",
+    ],
+    tags: ["React", "Redux", "Konva", "JavaScript"],
+    source: "사용자 제공",
   },
 ];
 
@@ -113,14 +210,30 @@ export function filterProjects(filter: ProjectFilter) {
     ? projects
     : projects.filter((project) => project.category === filter);
 }
-export const careers: Career[] = legacyCareers;
+export const careers: Career[] = legacyCareers.map((career) => {
+  if (career.project !== "eForm3 서비스 개발")
+    return {
+      ...career,
+      ...careerCopy[career.project],
+      company: "진학어플라이",
+    };
+  const project = projects.find((item) => item.id === "eform");
+  return {
+    ...career,
+    company: "I-ON Communications",
+    date: project?.period ?? "2019.05 — 2020.01",
+    description: project?.description ?? career.description,
+    result: project?.outcomes?.join(". ") ?? career.result,
+    useSkills: project?.tags ?? career.useSkills,
+  };
+});
 export const capabilities: Capability[] = [
   {
     id: "agentic",
     term: "Agentic Development",
-    title: "에이전트와 함께하는 개발",
+    title: "작업을 나누고, 코드는 직접 검토합니다",
     description:
-      "AI 코딩 에이전트에 작업 맥락을 제공하고, 구현 결과를 개발자의 검토와 검증으로 연결하는 개발 방식입니다.",
+      "OpenCode에 작업을 맡길 때는 수정할 범위와 완료 조건을 먼저 정리합니다. 생성된 코드는 변경 내용을 읽고 직접 실행해 확인합니다.",
     tools: ["OpenCode", "AI Coding Agents", "Human-in-the-loop"],
     steps: [
       {
@@ -149,9 +262,9 @@ export const capabilities: Capability[] = [
   {
     id: "context",
     term: "Context Engineering",
-    title: "맥락을 설계하는 개발",
+    title: "반복해서 설명할 내용은 문서로 남깁니다",
     description:
-      "프로젝트 규칙, 코드 맥락, 재사용 가능한 Agent Skills를 정리해 에이전트가 작업에 필요한 정보를 활용하도록 구성합니다.",
+      "프로젝트 구조와 코딩 규칙은 AGENTS.md에, 반복 작업의 절차는 Skill에 정리합니다. 작업이 바뀌어도 필요한 규칙과 결정 사항을 참고할 수 있도록 합니다.",
     tools: ["Agent Skills", "AGENTS.md", "Context Management"],
     steps: [
       {
@@ -180,9 +293,9 @@ export const capabilities: Capability[] = [
   {
     id: "mcp",
     term: "MCP Integration",
-    title: "도구와 맥락의 연결",
+    title: "작업에 필요한 도구를 연결합니다",
     description:
-      "Model Context Protocol을 이해하고, 에이전트와 외부 도구·리소스를 연결하는 통합 구조를 다룹니다.",
+      "MCP로 에이전트에 외부 도구와 리소스를 연결합니다. 연결한 서버가 어떤 기능과 권한을 제공하는지 확인하고, 작업에 필요한 도구를 사용합니다.",
     tools: ["Model Context Protocol", "Tools & Resources", "MCP Clients"],
     steps: [
       {
@@ -211,9 +324,9 @@ export const capabilities: Capability[] = [
   {
     id: "spec",
     term: "Spec-driven Development",
-    title: "명세에서 시작하는 개발",
+    title: "무엇을 만들지 정한 뒤 구현합니다",
     description:
-      "GSD의 명세 중심 접근을 바탕으로 요구사항, 작업 계획, 실행, 검증을 단계별로 구조화합니다.",
+      "GSD를 활용해 요구사항과 작업 순서를 정리합니다. 한 번에 맡길 범위를 작게 나누고, 구현이 끝나면 처음 정한 조건을 충족하는지 확인합니다.",
     tools: ["GSD", "Specification", "Task Decomposition"],
     steps: [
       {

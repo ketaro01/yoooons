@@ -30,12 +30,12 @@ export function ProjectVisual({ project }: { project: Project }) {
             </div>
             <div className="preview-metrics">
               <div>
-                <small>Workspace</small>
-                <b>Control.</b>
+                <small>Platform UI</small>
+                <b>대시보드</b>
               </div>
               <div>
-                <small>AI infrastructure</small>
-                <b>Connect.</b>
+                <small>Model Cost</small>
+                <b>모델 원가</b>
               </div>
             </div>
             <div className="preview-chart">
@@ -58,12 +58,32 @@ export function ProjectVisual({ project }: { project: Project }) {
           <div className="studio-symbol">
             K<span>✳</span>
           </div>
-          <span className="studio-node studio-node--one">모델</span>
-          <span className="studio-node studio-node--two">아이디어</span>
-          <span className="studio-node studio-node--three">경험</span>
+          <span className="studio-node studio-node--one">레이아웃</span>
+          <span className="studio-node studio-node--two">권한 관리</span>
+          <span className="studio-node studio-node--three">플레이그라운드</span>
           <div className="studio-caption">
             K intelligence <b>studio</b>
           </div>
+        </div>
+      ) : project.visual === "hub" ? (
+        <div className="hub-preview">
+          <div className="hub-connections" />
+          <span className="hub-resource hub-resource--mcp">
+            <Icon name="code" size={19} />
+            MCP
+          </span>
+          <span className="hub-resource hub-resource--skills">
+            <Icon name="spark" size={19} />
+            Skills
+          </span>
+          <div className="hub-core">
+            AX<span>Works</span>
+          </div>
+          <span className="hub-approval">
+            <Icon name="check" size={14} />
+            관리 · 승인
+          </span>
+          <span className="hub-caption">Internal Portal · KT B2E</span>
         </div>
       ) : project.visual === "data" ? (
         <div className="data-preview">
@@ -75,14 +95,14 @@ export function ProjectVisual({ project }: { project: Project }) {
           <span className="data-subtitle">{project.subtitle}</span>
           <div className="data-terminal">
             <span>● ● ●</span>
-            <code>interface → experience</code>
+            <code>{project.tags.slice(0, 2).join(" / ")}</code>
           </div>
         </div>
       ) : (
         <div className="form-preview">
           <div className="paper">
             <small>eForm3</small>
-            <h4>연결이 계약이 되는 순간.</h4>
+            <h4>전자계약서</h4>
             <i />
             <i />
             <i />

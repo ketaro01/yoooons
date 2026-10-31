@@ -1,17 +1,20 @@
-import { careers, profile } from "../../data/portfolio";
+import { careers } from "../../data/portfolio";
 import { SectionHeading } from "../atoms/SectionHeading";
 import { Icon } from "../atoms/Icon";
 import { Tag } from "../atoms/Tag";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 export function Experience() {
+  const timelineReveal = useScrollReveal<HTMLDivElement>();
+  const toolboxReveal = useScrollReveal<HTMLElement>(90);
   return (
     <section className="section experience" id="experience">
       <SectionHeading
-        number="03"
+        number="04"
         label="경력과 기술"
-        title="경험은 쌓이고, 방식은 진화합니다."
+        title="주요 경력과 사용 기술"
       />
       <div className="experience-layout">
-        <div className="career-timeline">
+        <div className="career-timeline" ref={timelineReveal}>
           <article className="career-company career-company--current">
             <div className="company-meta">
               <span className="timeline-dot" />
@@ -22,48 +25,47 @@ export function Experience() {
                 <h3>KT</h3>
                 <Tag accent>현재 소속</Tag>
               </div>
-              <p>Token Factory Platform Admin UI 개발</p>
-              <p>K intelligence studio 개발</p>
+              <p>세 프로젝트의 레이아웃·권한 관리 등 공통 프레임워크 개발</p>
+              <p>Token Factory · 대시보드 및 모델 원가 관리 UI</p>
+              <p>AX Works Internal Portal · MCP Hub</p>
+              <p>K intelligence studio · 플레이그라운드</p>
               <div className="company-projects">
                 <span>AI 플랫폼</span>
-                <span>관리자 UI</span>
+                <span>관리자 UI · B2E 포털</span>
               </div>
             </div>
           </article>
           <article className="career-company">
             <div className="company-meta">
               <span className="timeline-dot" />
-              <span>이전 경력</span>
+              <span>데이터 플랫폼</span>
             </div>
             <div>
               <h3>KT NexR</h3>
-              <p>Constantine · NEB (NE Bookshelf)</p>
-              <p>NDAP 신규 버전 프론트엔드 개발</p>
+              <p>NDAP · React 전환 및 핵심 기능 마이그레이션</p>
+              <p>NEB (NexR Bookshelf) · 분석환경 UI 및 공통 컴포넌트</p>
+              <p>Constantine · Dashboard, Notebook, Workbench</p>
               <div className="company-projects">
-                <span>프론트엔드</span>
-                <span>플랫폼</span>
+                <span>프레임워크 개발</span>
+                <span>npm 라이브러리 배포</span>
               </div>
             </div>
           </article>
           <article className="career-company">
             <div className="company-meta">
               <span className="timeline-dot" />
-              <span>
-                2019.05 ~<small>종료 시점 미기재</small>
-              </span>
+              <span>전자계약 서비스</span>
             </div>
             <div>
               <h3>I-ON Communications</h3>
               <p>eForm3 전자계약 서비스 프론트엔드 개발</p>
-              <p>에디터 개선 · 서명/도장 모듈 개발</p>
+              <p>에디터 저장 구조 개선 · 서명/도장 모듈 개발</p>
             </div>
           </article>
           <article className="career-company">
             <div className="company-meta">
               <span className="timeline-dot" />
-              <span>
-                2014 — 2019<small>프로젝트 기록 기준</small>
-              </span>
+              <span>입시·채용 서비스</span>
             </div>
             <div>
               <h3>진학어플라이</h3>
@@ -72,21 +74,30 @@ export function Experience() {
             </div>
           </article>
         </div>
-        <aside className="toolbox">
-          <p className="eyebrow">개발 도구 상자</p>
+        <aside className="toolbox" ref={toolboxReveal}>
+          <p className="eyebrow">기술 스택</p>
           <h3>
-            상황에 맞는 도구로,
+            개발에 사용해온
             <br />
-            필요한 경험을.
+            기술과 도구입니다.
           </h3>
           <div className="toolbox-group">
             <h4>프론트엔드 경험</h4>
             <div className="tags">
-              {["React", "Vue.js", "JavaScript", "Redux", "Sass"].map(
-                (item) => (
-                  <Tag key={item}>{item}</Tag>
-                ),
-              )}
+              {[
+                "React",
+                "TypeScript",
+                "Vite",
+                "CRA",
+                "Vue",
+                "Vuex",
+                "JavaScript",
+                "Redux",
+                "Redux-Saga",
+                "Sass",
+              ].map((item) => (
+                <Tag key={item}>{item}</Tag>
+              ))}
             </div>
           </div>
           <div className="toolbox-group">
@@ -128,16 +139,12 @@ export function Experience() {
       <details className="archive-details">
         <summary>
           <span>
-            <span className="archive-marker">↳</span> 이전 프로젝트 기록{" "}
+            <span className="archive-marker">↳</span> 더 많은 프로젝트{" "}
             <small>{careers.length.toString().padStart(2, "0")}</small>
           </span>
           <Icon name="plus" size={20} />
         </summary>
         <div className="archive-content">
-          <p className="archive-note">
-            기존 포트폴리오의 기록을 보존했습니다. 아래 기간은 당시 프로젝트
-            기준이며 ‘현재’는 최신 재직 상태를 뜻하지 않습니다.
-          </p>
           {careers.map((career, index) => (
             <details className="career-detail" key={career.project}>
               <summary>
@@ -148,9 +155,7 @@ export function Experience() {
                   {career.project}
                   <small>{career.company}</small>
                 </span>
-                <span className="career-detail__date">
-                  {career.date.replace("현재", "당시 기록")}
-                </span>
+                <span className="career-detail__date">{career.date}</span>
                 <Icon name="plus" size={16} />
               </summary>
               <div className="career-detail__body">
@@ -168,14 +173,6 @@ export function Experience() {
               </div>
             </details>
           ))}
-          <a
-            className="text-link"
-            href={profile.source}
-            target="_blank"
-            rel="noreferrer"
-          >
-            경력 데이터 원문 <Icon name="arrow" size={14} />
-          </a>
         </div>
       </details>
     </section>
