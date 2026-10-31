@@ -5,6 +5,8 @@ dist/
 .openai/
 qa/
 /CONTENT.md
+/env/
+/docs/
 *.tar.gz
 *.log
 .env*
