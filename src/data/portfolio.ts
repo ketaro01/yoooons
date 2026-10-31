@@ -20,7 +20,7 @@ export const profile = {
     "최근에는 OpenCode, MCP, Skills, GSD를 활용하는 개발 방식에도 관심을 두고 있습니다. AI에 맡길 작업과 직접 확인할 부분을 구분하면서, 제 개발 과정에 맞는 활용법을 익혀가고 있습니다.",
   ],
   github: "https://github.com/ketaro01",
-  archive: "https://github.com/ketaro01/yoons_portfolio",
+  repository: "https://github.com/ketaro01/yoooons",
   source:
     "https://github.com/ketaro01/yoons_portfolio/blob/master/src/data/careers.json",
 };

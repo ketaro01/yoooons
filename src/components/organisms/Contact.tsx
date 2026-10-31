@@ -32,8 +32,8 @@ export function Contact() {
           {profile.role} {profile.fullName}
         </p>
         <div>
-          <a href={profile.archive} target="_blank" rel="noreferrer">
-            이전 포트폴리오 소스 <Icon name="arrow" size={13} />
+          <a href={profile.repository} target="_blank" rel="noreferrer">
+            포트폴리오 소스 <Icon name="arrow" size={13} />
           </a>
           <a href="#home">
             맨 위로 <Icon name="arrow" size={13} />
