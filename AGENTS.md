@@ -42,16 +42,28 @@ node docs/scripts/github-task.mjs push
 node docs/scripts/github-task.mjs verify
 ```
 
-현재 도구는 private 저장소를 대상으로 동작합니다. `audit`는 추적 파일과 과거 blob의 인증정보 패턴을 검사합니다. 패턴 검사만으로 모든 민감정보가 없다고 단정하지 않습니다. `verify`는 원격 커밋·파일 트리와 로컬의 일치 여부, 비공개 상태를 확인합니다. 결과는 `docs/`에만 저장합니다.
+`audit`는 추적 파일과 과거 blob의 인증정보 패턴을 검사합니다. 패턴 검사만으로 모든 민감정보가 없다고 단정하지 않습니다. `verify`는 원격 커밋·파일 트리와 로컬의 일치 여부, 저장소 공개 상태를 확인합니다. Pages 산출물은 별도의 배포 도구로 검증합니다. 결과는 `docs/`에만 저장합니다.
 
 ## 공개 전환 및 GitHub Pages
 
 - 소스 저장소는 `ketaro01/yoooons`, 기본 브랜치는 `main`입니다.
-- 현재 단계는 private 소스 검토입니다. 별도 사용자 요청 전에는 public 전환이나 Pages 게시를 수행하지 않습니다. 기존 `yoooons.com`과 DNS는 변경하지 않습니다.
+- 사용자가 public 전환과 GitHub Pages 배포, `yoooons.com` 연결을 요청했습니다. 운영 주소는 `https://yoooons.com/`이며 도메인 연결 대상은 `ketaro01/yoooons`입니다. 기존 `ketaro01/yoons_portfolio`의 소스는 유지합니다. DNS 변경은 별도로 필요성을 확인합니다.
 - 공개 전환 전에는 현재 파일뿐 아니라 게시할 모든 브랜치·태그의 이력, 커밋 메타데이터, 배포 산출물에 인증정보나 내부 작업 자료가 없는지 확인합니다.
 - Pages는 검증한 `dist/` 내용만 별도의 `gh-pages` 브랜치에 게시하는 방식을 사용합니다. `main` 푸시만으로 배포하지 않습니다.
-- 게시 준비 시 Vite `base`와 자산 경로를 `/yoooons/` 하위 경로에 맞게 설정하고, 빌드 후 HTML·JS·CSS·폰트가 해당 경로에서 로드되는지 검사합니다. 현재 Vite 설정은 루트 경로 기준이므로 게시 전에 조정해야 합니다.
+- Vite `base`는 `./`입니다. 사용자 도메인 루트와 `/yoooons/` 하위 경로 양쪽에서 HTML·JS·CSS·폰트가 로드되는지 확인합니다. `public/CNAME`의 `yoooons.com` 설정을 빌드와 배포 브랜치에 유지합니다.
 - 검증한 산출물에 `.nojekyll`을 추가하고 별도의 Git 인덱스 또는 작업 디렉터리로 `gh-pages`에 커밋합니다. 기존 배포 커밋을 부모로 유지하고 일반 푸시합니다.
 - Pages 게시 소스는 `gh-pages` 브랜치의 루트로 설정합니다. 운영 문서·스크립트·인증 파일·로컬 백업을 배포 브랜치에 넣지 않습니다.
 - 배포 완료는 업로드 성공만으로 판단하지 않습니다. Pages 빌드 상태, 실제 게시 주소의 응답, HTML·JS·CSS·폰트의 SHA-256 일치를 확인합니다.
 - private 소스 저장소가 비공개 웹사이트를 의미하지는 않습니다. 공개 범위는 저장소와 사이트 각각 확인합니다.
+
+로컬 배포 도구가 준비된 환경에서는 다음 명령을 사용합니다. 소스 변경은 먼저 커밋하고 `main`에 푸시합니다.
+
+```sh
+bun run build
+node docs/scripts/pages.mjs validate
+node docs/scripts/pages.mjs deploy
+node docs/scripts/pages.mjs status
+node docs/scripts/pages.mjs verify-live
+```
+
+`deploy`는 깨끗한 작업 트리, 원격 `main` 일치, 공개 저장소, 빌드 허용 목록과 인증정보 검사 통과를 요구합니다. 최초 도메인 이전은 `stage`로 기본 Pages 주소에서 검증한 뒤 수행하며, 실패하면 저장한 이전 설정으로 복구합니다. `public`과 `transfer-domain`은 일상적인 재배포에 사용하지 않습니다.
