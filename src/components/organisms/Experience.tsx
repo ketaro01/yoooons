@@ -92,6 +92,8 @@ export function Experience() {
                 "Vue",
                 "Vuex",
                 "JavaScript",
+                "React Query",
+                "Zustand",
                 "Redux",
                 "Redux-Saga",
                 "Sass",

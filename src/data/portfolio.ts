@@ -44,7 +44,7 @@ export const projects: Project[] = [
       "플랫폼 운영 대시보드 UI 개발",
       "모델 원가 관리 화면 개발",
     ],
-    tags: ["React", "Vite", "TypeScript"],
+    tags: ["React", "Vite", "TypeScript", "React Query", "Zustand"],
     source: "사용자 제공",
   },
   {
@@ -63,7 +63,7 @@ export const projects: Project[] = [
       "사내 포털의 레이아웃과 권한 관리 등 공통 프론트엔드 프레임워크 개발",
       "MCP 관리·승인 허브인 MCP Hub의 프론트엔드 기능 구현",
     ],
-    tags: ["React", "Vite", "TypeScript"],
+    tags: ["React", "Vite", "TypeScript", "React Query", "Zustand"],
     source: "사용자 제공",
   },
   {
@@ -82,7 +82,7 @@ export const projects: Project[] = [
       "Studio의 레이아웃과 권한 관리 등 공통 프론트엔드 프레임워크 개발",
       "플레이그라운드 화면 및 프론트엔드 기능 구현",
     ],
-    tags: ["React", "Vite", "TypeScript"],
+    tags: ["React", "Vite", "TypeScript", "Redux-Saga"],
     source: "사용자 제공",
   },
   {
